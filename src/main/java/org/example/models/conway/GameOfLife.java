@@ -3,12 +3,13 @@ package org.example.models.conway;
 import simudyne.core.Model;
 import simudyne.core.abm.AgentSystem;
 import simudyne.core.abm.LongAccumulator;
+import simudyne.core.abm.spark.SparkAgentSystemBackend;
 import simudyne.core.abm.topology.Group;
 import simudyne.core.abm.topology.linker.GridConnected;
 import simudyne.core.annotations.Variable;
 
 public class GameOfLife implements Model {
-  @Variable public AgentSystem grid = AgentSystem.create();
+  public AgentSystem grid = AgentSystem.create();
   private LongAccumulator bornAccumulator = grid.createLongAccumulator("born");
   private LongAccumulator diedAccumulator = grid.createLongAccumulator("died");
 
@@ -28,6 +29,13 @@ public class GameOfLife implements Model {
   }
 
   public void setup() {
+
+    grid.registerAgentTypes(Cell.class);
+    grid.registerMessageTypes(Messages.Start.class, Messages.Neighbour.class);
+
+    //set your Spark master URL below, default Spark Master URL is set to `local[*]`
+    grid.getConfig().setBackend(new SparkAgentSystemBackend().setMasterURL("<sparkMasterURL>"));
+
     Group cellsGroup =
         grid.getTopology()
             .generateGroup(

@@ -11,7 +11,26 @@ configure your IDE with a specific settings.xml file, or you may merge the `sett
 `settings.xml` if you are already a Maven user. **You need to insert your own credentials as provided by Simudyne into
 the `settings.xml` file.**
 
-## Running the project
+## Running the project locally
 
 Included in the pom.xml is configuration for the `exec-maven-plugin`, so you can run the compiled project via
 `mvn -s settings.xml exec:java`, which will call the Main.main method.
+
+## Running the project distributed with Spark
+
+- Install Spark
+
+- Start Spark standalone master server : `./sbin/start-master.sh`
+
+- Check the spark Master URL at localhost:8080/ (make sure the console is running on a different port),
+you can set the console host and port in your `Main` class with :
+```java
+Server.setHostName("0.0.0.0");
+Server.setPort(8081);
+```
+
+- Start one or several slaves : `./sbin/start-slave.sh <sparkMasterURL>`
+
+- Build your fatJar file with `mvn -s settings.xml compile package`, it will be in `target`
+
+- Submit the fatJar using the url from last step: `spark-submit --class Main --master <sparkMasterURL> --deploy-mode client name-of-the-fatjar.jar`
