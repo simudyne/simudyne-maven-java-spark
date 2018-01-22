@@ -31,6 +31,8 @@ Server.setPort(8081);
 
 - Start one or several slaves : `./sbin/start-slave.sh <sparkMasterURL>`
 
+- Set the Spark master URL in the `setup()` method of your model 
+
 - Build your fatJar file with `mvn -s settings.xml compile package`, it will be in `target`
 
 - Submit the fatJar using the url from last step: `spark-submit --class Main --master <sparkMasterURL> --deploy-mode client name-of-the-fatjar.jar`
