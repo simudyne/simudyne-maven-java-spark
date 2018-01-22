@@ -34,7 +34,7 @@ public class GameOfLife implements Model {
     grid.registerMessageTypes(Messages.Start.class, Messages.Neighbour.class);
 
     //set your Spark master URL below, default Spark Master URL is set to `local[*]`
-    grid.getConfig().setBackend(new SparkAgentSystemBackend().setMasterURL("<sparkMasterURL>"));
+    grid.getConfig().setBackend(new SparkAgentSystemBackend()/*.setMasterURL("<sparkMasterURL>")*/);
 
     Group cellsGroup =
         grid.getTopology()
