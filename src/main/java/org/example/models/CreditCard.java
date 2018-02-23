@@ -41,7 +41,8 @@ public class CreditCard implements Model {
     balance = initial_balance;
   }
 
-  public void calculate() {
+  @Override
+  public void step() {
     balance += balance_additions() - repayment;
 
     if (balance < 0) {
