@@ -39,6 +39,10 @@ you can set the console host and port in your `simudyneSDK.properties` file in t
 
 - Build your fatJar file with `mvn -s settings.xml compile package`, it will be in `target`
 
+- Add `core-abm.backend-implementation=simudyne.core.graph.spark.SparkGraphBackend` to SimuydneSDK.properties file
+
+- Use the SimudyneSDK.properties file to set the master URL and other settings
+
 - Upload your fatJar file and simudyneSDK.properties file to your master node.
 
 - SSH into your master node and then submit the fatJar using the url from last step: 
@@ -47,4 +51,12 @@ spark2-submit --class Main --master <sparkMasterURL>  --deploy-mode client --num
 ```
 
 - You should set `--num-executors`,  `--executor-cores`,  `--executor-memory` parameters according your own cluster resources.
-Useful resource : [http://blog.cloudera.com/blog/2015/03/how-to-tune-your-apache-spark-jobs-part-2/](http://blog.cloudera.com/blog/2015/03/how-to-tune-your-apache-spark-jobs-part-2/) 
+Useful resource : [http://blog.cloudera.com/blog/2015/03/how-to-tune-your-apache-spark-jobs-part-2/](http://blog.cloudera.com/blog/2015/03/how-to-tune-your-apache-spark-jobs-part-2/)
+
+## Running multiple runs distributed with spark
+
+- Add `core-runner.runner-backend = simudyne.core.runner.spark.SparkRunnerBackend` to SimuydneSDK.properties file
+
+- Run project on Spark as above
+
+- Use console multirun setting to run model multiple times
