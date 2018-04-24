@@ -11,7 +11,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <simudyne.version>2.0.0-beta.3</simudyne.version>
+        <simudyne.version>2.0.0</simudyne.version>
     </properties>
 
     <distributionManagement>
@@ -47,6 +47,11 @@
             <groupId>simudyne</groupId>
             <artifactId>simudyne-core-runner-spark_2.11</artifactId>
             <version>${simudyne.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_2.11</artifactId>
+            <version>2.2.1</version>
         </dependency>
     </dependencies>
 
