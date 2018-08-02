@@ -36,8 +36,8 @@ you can set the console host and port in your `simudyneSDK.properties` file in t
 - Your `<sparkMasterURL>` will be `yarn`.
   
 - We have tested with: 
-* Cloudera CDH 5.13.0, 2.3.0.cloudera2
-* Cloudera CDH 5.15.0, 2.3.0.cloudera3
+  * Cloudera CDH 5.13.0, 2.3.0.cloudera2
+  * Cloudera CDH 5.15.0, 2.3.0.cloudera3
 
 ### Next steps
 
