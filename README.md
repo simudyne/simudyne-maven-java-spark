@@ -33,24 +33,32 @@ you can set the console host and port in your `simudyneSDK.properties` file in t
 
 ### Running on Spark on Yarn
 
-- Your <sparkMasterURL> will be `yarn`.
+- Your `<sparkMasterURL>` will be `yarn`.
+  
+- We have tested with: 
+* Cloudera CDH 5.13.0, 2.3.0.cloudera2
+* Cloudera CDH 5.15.0, 2.3.0.cloudera3
 
 ### Next steps
 
-- Build your fatJar file with `mvn -s settings.xml compile package`, it will be in `target`
+- Use the SimudyneSDK.properties file to set the master URL and other settings
 
 - Add `core-abm.backend-implementation=simudyne.core.graph.spark.SparkGraphBackend` to SimuydneSDK.properties file
 
-- Use the SimudyneSDK.properties file to set the master URL and other settings
-
-- Upload your fatJar file and simudyneSDK.properties file to your master node.
-
-- SSH into your master node and then submit the fatJar using the url from last step: 
-```text
-spark2-submit --class Main --master <sparkMasterURL>  --deploy-mode client --num-executors 30 --executor-cores 5 --executor-memory 30G --conf "spark.executor.extraJavaOptions=-XX:+UseG1GC" --files simudyneSDK.properties name-of-the-fat-jar.jar
+- Build your fatJar file with `mvn -s settings.xml clean package`, it will be in `target`
+```shell
+mvn -s settings.xml clean package \
+&& hdfs dfs -put -f target/simudyne-maven-java-spark-1.0-SNAPSHOT.jar /user/ags/
 ```
 
-- You should set `--num-executors`,  `--executor-cores`,  `--executor-memory` parameters according your own cluster resources.
+- SSH into your master node and then submit the fatJar using the url from last step: 
+```shell
+spark2-submit --master yarn --deploy-mode client \
+--conf "spark.executor.extraJavaOptions=-XX:+UseG1GC" --class Main \
+--files simudyneSDK.properties hdfs:///user/${USER}/simudyne-maven-java-spark-1.0-SNAPSHOT.jar
+```
+
+- You should set `--num-executors`,  `--executor-cores`, `--executor-memory` parameters according your own cluster resources.
 Useful resource : [http://blog.cloudera.com/blog/2015/03/how-to-tune-your-apache-spark-jobs-part-2/](http://blog.cloudera.com/blog/2015/03/how-to-tune-your-apache-spark-jobs-part-2/)
 
 ## Running multiple runs distributed with spark
