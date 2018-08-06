@@ -36,7 +36,8 @@ you can set the console host and port in your `simudyneSDK.properties` file in t
 - Your `<sparkMasterURL>` will be `yarn`.
   
 - We have tested with: 
-  * Cloudera CDH 5.13.0, 2.3.0.cloudera2
+  * Cloudera CDH 5.13.1, 2.3.0.cloudera2
+  * Cloudera CDH 5.15.0, 2.2.0.cloudera2
   * Cloudera CDH 5.15.0, 2.3.0.cloudera3
 
 ### Next steps
@@ -48,7 +49,7 @@ you can set the console host and port in your `simudyneSDK.properties` file in t
 - Build your fatJar file with `mvn -s settings.xml clean package`, it will be in `target`
 ```shell
 mvn -s settings.xml clean package \
-&& hdfs dfs -put -f target/simudyne-maven-java-spark-1.0-SNAPSHOT.jar /user/ags/
+&& hdfs dfs -put -f target/simudyne-maven-java-spark-1.0-SNAPSHOT.jar /user/${USER}/
 ```
 
 - SSH into your master node and then submit the fatJar using the url from last step: 
