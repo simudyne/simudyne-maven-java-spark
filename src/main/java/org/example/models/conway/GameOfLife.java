@@ -11,14 +11,14 @@ import simudyne.core.annotations.Variable;
 @ModelSettings(macroStep = 25)
 public class GameOfLife extends AgentBasedModel<GameOfLife.Globals> {
   public static final class Globals extends GlobalState {
-    @Constant float fillFactor = 0.25f;
+    public @Constant float fillFactor = 0.25f;
   }
 
-  @Input boolean distributed = false;
-  @Input int gridSize = 20;
+  public @Input boolean distributed = false;
+  public @Input int gridSize = 20;
 
   @Variable
-  long aliveCells() {
+  public long aliveCells() {
     return select(Cell.class).filter(agent -> agent.alive).count();
   }
 
