@@ -80,6 +80,10 @@
               <pattern>org.json4s</pattern>
               <shadedPattern>shaded.json4s</shadedPattern>
             </relocation>
+            <relocation>
+              <pattern>org.apache.avro</pattern>
+              <shadedPattern>org.shaded.apache.avro</shadedPattern>
+            </relocation>
           </relocations>
         </configuration>
         <executions>
