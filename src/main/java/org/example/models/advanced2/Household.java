@@ -89,7 +89,7 @@ public class Household extends Agent<GlobalState> {
   public void consume() {
     wealth -= consumption;
 
-    if (wealth < 0) {
+    if (wealth <= 0) {
       wealth = 1;
     }
   }
