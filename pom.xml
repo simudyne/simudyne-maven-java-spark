@@ -68,6 +68,17 @@
           <artifactSet>
             <excludes>
               <exclude>META-INF/*</exclude>
+              <exclude>com.fasterxml.jackson.core:jackson-databind</exclude>
+              <exclude>com.fasterxml.jackson.module:jackson-module-scala_2.11</exclude>
+              <exclude>com.twitter:chill_2.11</exclude>
+              <exclude>io.netty:netty-all</exclude>
+              <exclude>org.apache.commons:commons-math3</exclude>
+              <exclude>org.apache.commons:commons-lang3</exclude>
+              <exclude>org.json4s:json4s-jackson_2.11</exclude>
+              <exclude>commons-net</exclude>
+              <exclude>org.slf4j:slf4j-api</exclude>
+              <exclude>org.xerial.snappy:snappy-java</exclude>
+              <exclude>org.scala-lang:scala-library</exclude>
             </excludes>
           </artifactSet>
           <transformers>
